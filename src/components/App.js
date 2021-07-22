@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import SignIn from "./SignIn";
 import { handleGetUsers } from "../actions/users";
@@ -20,16 +20,19 @@ class App extends Component {
     const { authedUser } = this.props;
 
     return (
-      <div className="container-fluid">
-        { authedUser === null
-          ? <SignIn />
-          : (
-            <div>
-              <Nav />
-            </div>
-          )
-        }
-      </div>
+      <Fragment>
+        <Nav />
+        <div className="container-fluid">
+          { authedUser === null
+            ? <SignIn />
+            : (
+              <div>
+                
+              </div>
+            )
+          }
+        </div>
+      </Fragment>
     );
   }
 }
