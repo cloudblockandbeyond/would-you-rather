@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
+import PropTypes from "prop-types";
 
 class SignIn extends Component {
+    static propTypes = {
+        users: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
 
@@ -45,8 +51,8 @@ class SignIn extends Component {
                         </div>
                         <div className="card-footer">
                             <form onSubmit={ this.handleSubmit }>
-                                <div className="d-grid gap-2">
-                                    <select onChange={ this.handleChange }>
+                                <div className="form-group">
+                                    <select className="form-control" onChange={ this.handleChange }>
                                         <option value="0" defaultValue>Select User</option>
                                         { Object.keys(users).map( (id) => (
                                             <option key={ id } value={ id }>
@@ -55,13 +61,10 @@ class SignIn extends Component {
                                         ) ) }
                                     </select>
                                 </div>
-                                <br />
-                                <div className="d-grid gap-2">
-                                    <button className="btn btn-success text-center" 
-                                        type="submit" disabled={ userSelected==="0" } >
-                                        Sign In
-                                    </button>
-                                </div>
+                                <button className="btn btn-success btn-block text-center" 
+                                    type="submit" disabled={ userSelected==="0" } >
+                                    Sign In
+                                </button>
                             </form>
                         </div>
                     </div>

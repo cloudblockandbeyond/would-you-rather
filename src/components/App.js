@@ -2,8 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import SignIn from "./SignIn";
 import { handleGetUsers } from "../actions/users";
+import PropTypes from "prop-types";
+import Nav from "./Nav";
 
 class App extends Component {
+  static propTypes = {
+    authedUser: PropTypes.string,
+    dispatch: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(handleGetUsers());
@@ -16,7 +23,11 @@ class App extends Component {
       <div className="container-fluid">
         { authedUser === null
           ? <SignIn />
-          : <div>Home</div>
+          : (
+            <div>
+              <Nav />
+            </div>
+          )
         }
       </div>
     );
