@@ -1,0 +1,10 @@
+.contact-avatar {
+    width: 45px;
+    height: 45px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

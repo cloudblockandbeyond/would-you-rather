@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import SignIn from "./SignIn";
 import { handleGetUsers } from "../actions/users";
 import PropTypes from "prop-types";
 import Nav from "./Nav";
+import SignIn from "./SignIn";
+import Home from "./Home";
 
 class App extends Component {
   static propTypes = {
@@ -27,7 +28,7 @@ class App extends Component {
             ? <SignIn />
             : (
               <div>
-                
+                <Home />
               </div>
             )
           }
