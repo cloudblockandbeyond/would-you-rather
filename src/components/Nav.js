@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 import PropTypes from "prop-types";
 import { AiOutlineLogout } from "react-icons/ai/index";
+import { Link } from "react-router-dom";
 
 class Nav extends Component {
     static propTypes = {
@@ -22,20 +23,20 @@ class Nav extends Component {
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
                 <ul className="navbar-nav mr-auto">
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">
+                    <li className="nav-item active">
+                        <Link className="nav-link" to={ { pathname: "/" } }>
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/add">
+                        <Link className="nav-link" to={ { pathname: "/add" }}>
                             New Question
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/leaderboard">
+                        <Link className="nav-link"  to={ { pathname: "/leaderboard" }}>
                             Leader Board
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 { (user !== null) && (

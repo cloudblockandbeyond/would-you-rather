@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Nav from "./Nav";
 import SignIn from "./SignIn";
 import Home from "./Home";
+import { Route } from "react-router-dom";
 
 class App extends Component {
   static propTypes = {
@@ -28,7 +29,9 @@ class App extends Component {
             ? <SignIn />
             : (
               <div>
-                <Home />
+                <Route exact path="/" render={ () => (
+                  <Home />
+                ) }/>
               </div>
             )
           }
