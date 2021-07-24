@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { handleGetUsers } from "../actions/users";
+import { handleGetQuestions } from "../actions/questions";
 import PropTypes from "prop-types";
 import Nav from "./Nav";
 import SignIn from "./SignIn";
 import Home from "./Home";
 import { Route } from "react-router-dom";
+import QuestionPage from "./QuestionPage";
 
 class App extends Component {
   static propTypes = {
@@ -16,6 +18,7 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(handleGetUsers());
+    dispatch(handleGetQuestions());
   }
 
   render() {
@@ -29,9 +32,8 @@ class App extends Component {
             ? <SignIn />
             : (
               <div>
-                <Route exact path="/" render={ () => (
-                  <Home />
-                ) }/>
+                <Route exact path="/" component={ Home }/>
+                <Route exact path="/questions/:id" component={ QuestionPage } />
               </div>
             )
           }

@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Question from "./Question";
-import { handleGetQuestions } from "../actions/questions";
 
 class Home extends Component {
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(handleGetQuestions());
-    }
-
     render() {
         const { unansweredQuestions, answeredQuestions } = this.props;
 
@@ -29,13 +23,13 @@ class Home extends Component {
                     </ul>
                     <div className="tab-content" id="homeTabContent">
                         <div className="tab-pane fade show active" id="unanswered" role="tabpanel">
-                            { unansweredQuestions.map((question) => (
-                                <Question key={ question.id } question={ question }/>
+                            { unansweredQuestions.map((id) => (
+                                <Question key={ id } questionId={ id }/>
                             )) }
                         </div>
                         <div className="tab-pane fade" id="answered" role="tabpanel" >
-                            { answeredQuestions.map((question) => (
-                                <Question key={ question.id } question={ question }/>
+                            { answeredQuestions.map((id) => (
+                                <Question key={ id } questionId={ id }/>
                             )) }
                         </div>
                     </div>
@@ -46,24 +40,19 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { questions, authedUser } = state;
+    const { users, questions, authedUser } = state;
+    const user = users[authedUser];
 
-    const answeredQuestions = [];
-    const unansweredQuestions = [];
+    const questionIds = Object.keys(questions);
+    const answeredQuestions = Object.keys(user.answers);
 
-    Object.keys(questions).forEach((key) => {
-        const question = questions[key];
-
-        if (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)) {
-            answeredQuestions.push(question);
-        } else {
-            unansweredQuestions.push(question);
-        }
-    });
+    const unansweredQuestions = questionIds.filter((questionId) => (!answeredQuestions.includes(questionId)));
 
     return ({
-        unansweredQuestions,
-        answeredQuestions
+        answeredQuestions: answeredQuestions.length === 0 ? answeredQuestions
+            : answeredQuestions.sort((a, b) => (questions[b].timestamp - questions[a].timestamp)),
+        unansweredQuestions: unansweredQuestions.length === 0 ? unansweredQuestions
+            : unansweredQuestions.sort((a, b) => (questions[b].timestamp - questions[a].timestamp))
     });
 };
 

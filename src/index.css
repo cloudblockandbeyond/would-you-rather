@@ -8,3 +8,11 @@
     border-radius: 50%;
     flex-shrink: 0;
 }
+
+.your-vote {
+    margin-left: 80%;
+}
+
+.contact-avatar-answered {
+    margin-top: 30%;
+}
