@@ -8,6 +8,7 @@ import SignIn from "./SignIn";
 import Home from "./Home";
 import { Route } from "react-router-dom";
 import QuestionPage from "./QuestionPage";
+import NewQuestion from "./NewQuestion";
 
 class App extends Component {
   static propTypes = {
@@ -34,6 +35,7 @@ class App extends Component {
               <div>
                 <Route exact path="/" component={ Home }/>
                 <Route exact path="/questions/:id" component={ QuestionPage } />
+                <Route exact path="/add" component={ NewQuestion } />
               </div>
             )
           }
