@@ -16,3 +16,41 @@
 .contact-avatar-answered {
     margin-top: 30%;
 }
+
+.leaderboard-image {
+    width: 150px;
+    height: 150px;
+}
+
+.leaderboard-text-margin {
+    margin-top: 50px;
+}
+
+.score {
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.score-name {
+    height: 30px;;
+    padding-left: 25px;
+    border-bottom: 1px solid;
+    background-color: #f0efef;
+}
+
+.score-total {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-top: 10px;
+    margin-left: 25px;
+    background-color: #419b0d;
+    color:#ffffff;
+}

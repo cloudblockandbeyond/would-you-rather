@@ -50,9 +50,9 @@ class Nav extends Component {
                             </span>
                         </li>
                         <li className="nav-item">
-                            <button className="btn btn-outline-secondary" type="button"
+                            <button className="btn btn-outline-danger" type="button"
                                 onClick={ this.handleClick }>
-                                <AiOutlineLogout />
+                                Logout <AiOutlineLogout />
                             </button>
                         </li>
                     </ul>
