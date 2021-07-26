@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { handleSaveQuestionAnswer } from "../actions/shared";
 
 class UnansweredQuestion extends Component {
     constructor(props) {
@@ -18,7 +19,16 @@ class UnansweredQuestion extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.answer);
+
+        const { dispatch, question, authedUser } = this.props;
+
+        const info = {
+            authedUser, 
+            qid: question.id,
+            answer: this.state.answer
+        };
+        
+        dispatch(handleSaveQuestionAnswer(info));
     };
 
     render() {
@@ -73,14 +83,15 @@ class UnansweredQuestion extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-    const { users, questions } = state;
+    const { users, questions, authedUser } = state;
     const { questionId } = props;
     const question = questions[questionId];
     const questionAuthor = users[question.author];
 
     return ({
         question,
-        questionAuthor
+        questionAuthor,
+        authedUser
     });
 };
 

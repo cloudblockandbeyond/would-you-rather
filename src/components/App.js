@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { handleGetUsers } from "../actions/users";
-import { handleGetQuestions } from "../actions/questions";
+import { handleInitialData } from "../actions/shared";
 import PropTypes from "prop-types";
 import Nav from "./Nav";
 import SignIn from "./SignIn";
@@ -20,8 +19,7 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(handleGetUsers());
-    dispatch(handleGetQuestions());
+    dispatch(handleInitialData());
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { GET_USERS, SAVE_QUESTION_AUTHOR } from "../actions/users";
+import { GET_USERS, ADD_USER_QUESTION, ADD_USER_ANSWER } from "../actions/users";
 
 const users = (state = {}, action) => {
     switch(action.type) {
@@ -7,12 +7,23 @@ const users = (state = {}, action) => {
                 ...state,
                 ...action.users
             });
-        case SAVE_QUESTION_AUTHOR:
+        case ADD_USER_QUESTION:
             return ({
                 ...state,
                 [action.userId]: {
                     ...state[action.userId],
                     questions: state[action.userId].questions.concat(action.questionId)
+                }
+            });
+        case ADD_USER_ANSWER:
+            return ({
+                ...state,
+                [action.userId]: {
+                    ...state[action.userId],
+                    answers: {
+                        ...state[action.userId].answers,
+                        [action.questionId]: action.answer
+                    }
                 }
             });
         default:
