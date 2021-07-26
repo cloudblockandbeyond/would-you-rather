@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Nav from "./Nav";
 import SignIn from "./SignIn";
 import Home from "./Home";
-import { Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import QuestionPage from "./QuestionPage";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
@@ -33,11 +33,16 @@ class App extends Component {
             ? <SignIn />
             : (
               <div>
-                <Route exact path="/" component={ Home }/>
-                <Route exact path="/questions/:id" component={ QuestionPage } />
-                <Route exact path="/add" component={ NewQuestion } />
-                <Route exact path="/leaderboard" component={ LeaderBoard } />
-                <Route component={ PageNotFound } />
+                <Switch>
+                  <Route exact path="/" component={ Home }/>
+                  <Route exact path="/questions/:id" component={ QuestionPage } />
+                  <Route exact path="/add" component={ NewQuestion } />
+                  <Route exact path="/leaderboard" component={ LeaderBoard } />
+                  <Route exact path="/error" component={ PageNotFound } />
+                  <Route path="*" render={ () => (
+                    <Redirect to="/error" />
+                  ) } />
+                </Switch>
               </div>
             )
           }
