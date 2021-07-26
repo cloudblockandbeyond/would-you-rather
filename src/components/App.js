@@ -10,6 +10,7 @@ import { Route } from "react-router-dom";
 import QuestionPage from "./QuestionPage";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
+import PageNotFound from "./PageNotFound";
 
 class App extends Component {
   static propTypes = {
@@ -38,6 +39,7 @@ class App extends Component {
                 <Route exact path="/questions/:id" component={ QuestionPage } />
                 <Route exact path="/add" component={ NewQuestion } />
                 <Route exact path="/leaderboard" component={ LeaderBoard } />
+                <Route component={ PageNotFound } />
               </div>
             )
           }
