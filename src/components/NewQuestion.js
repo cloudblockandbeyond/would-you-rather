@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { handleSaveQuestion } from "../actions/shared";
+import { Redirect } from "react-router-dom";
 
 class NewQuestion extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            toHome: false,
             optionOneText: "",
             optionTwoText: ""
         };
@@ -13,8 +17,20 @@ class NewQuestion extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const { optionOneText, optionTwoText } = this.state;
-        console.log("optionOneText: ", optionOneText);
-        console.log("optionTwoText: ", optionTwoText);
+
+        const { dispatch, authedUser } = this.props;
+
+        const newQuestion = {
+            optionOneText,
+            optionTwoText,
+            author: authedUser
+        };
+
+        dispatch(handleSaveQuestion(newQuestion));
+
+        this.setState((previousState) => ({
+            toHome: true
+        }));
     }
 
     handleChange = (event) => {
@@ -31,6 +47,14 @@ class NewQuestion extends Component {
     }
 
     render() {
+        const { toHome } = this.state;
+
+        if(toHome) {
+            return (
+                <Redirect to="/" />
+            );
+        }
+
         return (
             <div className="row m-4">
                 <div className="col-sm-8 offset-sm-2">
@@ -70,4 +94,12 @@ class NewQuestion extends Component {
     }
 }
 
-export default NewQuestion;
+const mapStateToProps = (state) => {
+    const { authedUser } = state;
+
+    return ({
+        authedUser
+    });
+};
+
+export default connect(mapStateToProps)(NewQuestion);

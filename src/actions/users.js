@@ -14,3 +14,11 @@ export const handleGetUsers = () => {
         });
     });
 };
+
+export const SAVE_QUESTION_AUTHOR = "SAVE_QUESTION_AUTHOR";
+
+export const saveQuestionAuthor = (userId, questionId) => ({
+    type: SAVE_QUESTION_AUTHOR,
+    userId,
+    questionId
+});
