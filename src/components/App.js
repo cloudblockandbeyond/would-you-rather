@@ -10,6 +10,7 @@ import QuestionPage from "./QuestionPage";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import PageNotFound from "./PageNotFound";
+import LoadingBar from "react-redux-loading-bar";
 
 class App extends Component {
   static propTypes = {
@@ -28,6 +29,7 @@ class App extends Component {
     return (
       <Fragment>
         <Nav />
+        <LoadingBar />
         <div className="container-fluid">
           { authedUser === null
             ? <SignIn />
